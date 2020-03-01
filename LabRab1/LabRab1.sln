@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LabRab1", "LabRab1\LabRab1.vcxproj", "{D9BD820E-F84D-488F-8C45-60F9370D6CBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9BD820E-F84D-488F-8C45-60F9370D6CBB}.Debug|x64.ActiveCfg = Debug|x64
+		{D9BD820E-F84D-488F-8C45-60F9370D6CBB}.Debug|x64.Build.0 = Debug|x64
+		{D9BD820E-F84D-488F-8C45-60F9370D6CBB}.Release|x64.ActiveCfg = Release|x64
+		{D9BD820E-F84D-488F-8C45-60F9370D6CBB}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D7B45C45-3677-4072-979B-5E9666A59FA0}
+	EndGlobalSection
+EndGlobal
