@@ -41,7 +41,7 @@ QColor Matrix_filter::calculateNewPixelColor(QImage photo, int x, int y, int rad
 {
 	int returnR = 0, returnG = 0, returnB = 0;
 	int size = 2 * radius + 1;
-	for(int i = -radius; i <= radius; i++)
+	for (int i = -radius; i <= radius; i++)
 		for (int j = -radius; j <= radius; j++)
 		{
 			int idx = (i + radius) * size + j + radius;
