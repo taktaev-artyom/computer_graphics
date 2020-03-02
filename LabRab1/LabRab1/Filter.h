@@ -44,7 +44,7 @@ public:
 class Gaussian_blur_filter : public Matrix_filter
 {
 public:
-	Gaussian_blur_filter()
+	Gaussian_blur_filter() : Matrix_filter(3)
 	{
 		createGaussianVector(3, 2);
 	}
@@ -82,12 +82,73 @@ public:
 class Sharpness_filter : public Matrix_filter
 {
 public:
-	Sharpness_filter()
+	Sharpness_filter() : Matrix_filter(1)
 	{
 		int size = 2 * mRadius + 1;
 		vector = new double[size * size];
-		vector[0] = vector[2] = vector[6] = vector[8] = 0;
-		vector[1] = vector[3] = vector[5] = vector[7] = 0;
-		vector[4] = -5;
+		vector[0] = 0;
+		vector[2] = 0;
+		vector[6] = 0;
+		vector[8] = 0;
+		vector[1] = -1;
+		vector[3] = -1;
+		vector[5] = -1;
+		vector[7] = -1;
+		vector[4] = 5;
+	}
+};
+
+class Sobel_filterX : public Matrix_filter
+{
+public:
+	Sobel_filterX() : Matrix_filter(1)
+	{
+		int size = 2 * mRadius + 1;
+		vector = new double[size * size];
+		vector[0] = -1;
+		vector[2] = -1;
+		vector[6] = 1;
+		vector[8] = 1;
+		vector[1] = -2;
+		vector[3] = 0;
+		vector[5] = 0;
+		vector[7] = 2;
+		vector[4] = 0;
+	}
+};
+
+class Sobel_filterY : public Matrix_filter
+{
+public:
+	Sobel_filterY() : Matrix_filter(1)
+	{
+		int size = 2 * mRadius + 1;
+		vector = new double[size * size];
+		vector[0] = -1;
+		vector[2] = 1;
+		vector[6] = -1;
+		vector[8] = 1;
+		vector[1] = 0;
+		vector[3] = -2;
+		vector[5] = 2;
+		vector[7] = 0;
+		vector[4] = 0;
+	}
+};
+
+class Motion_blur : public Matrix_filter
+{
+public:
+	Motion_blur() : Matrix_filter(8)
+	{
+		int size = 2 * mRadius + 1;
+		vector = new double[size * size];
+		for (int i = 0; i < size; i++)
+			for (int j = 0; j < size; j++)
+			{
+				if (i == j) vector[i * size + j] = 1.0f / size;
+				else vector[i * size + j] = 0;
+
+			}
 	}
 };
