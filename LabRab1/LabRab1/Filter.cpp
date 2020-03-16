@@ -113,3 +113,61 @@ QImage BrightnessFilter::calculateNewImagePixMap(const QImage& photo, int radius
 		}
 	return result_Image;
 }
+
+QImage TransferFilter::calculateNewImagePixMap(const QImage & photo, int radius)
+{
+	QImage result_Image(photo.width(), photo.height(), photo.format());
+	for (int x = 0; x < photo.width(); x++)
+		for (int y = 0; y < photo.height(); y++)
+		{
+			QColor photo_color = photo.pixelColor(x, y);
+			photo_color.setRgb(photo_color.red(), photo_color.green(), photo_color.blue());
+			result_Image.setPixelColor(clamp<int>(x + k, photo.width() - 1, 0), y, photo_color);
+		}
+	return result_Image;
+}
+
+QImage TurnFilter::calculateNewImagePixMap(const QImage & photo, int radius)
+{
+	QImage result_Image(photo.width(), photo.height(), photo.format());
+	for (int x = 0; x < photo.width(); x++)
+		for (int y = 0; y < photo.height(); y++)
+		{
+			//bool xvalid = ((x >= 0) && (x <= photo.width() - 1));
+			//bool yvalid = ((y >= 0) && (y <= photo.height() - 1));
+			//if (xvalid && yvalid)
+			//{
+				QColor photo_color = photo.pixelColor(x, y);
+				photo_color.setRgb(photo_color.red(), photo_color.green(), photo_color.blue());
+				result_Image.setPixelColor(clamp<int>(((x - x0) * cos(fi) - (y - y0) * sin(fi) + x0), photo.width() - 1, 0)
+					, clamp<int>(((x - x0) * sin(fi) + (y - y0) * cos(fi) + y0), photo.height() - 1, 0), photo_color);
+			//}
+		}
+	return result_Image;
+}
+
+QImage WavesXFilter::calculateNewImagePixMap(const QImage & photo, int radius)
+{
+	QImage result_Image(photo.width(), photo.height(), photo.format());
+	for (int x = 0; x < photo.width(); x++)
+		for (int y = 0; y < photo.height(); y++)
+		{
+			QColor photo_color = photo.pixelColor(x, y);
+			photo_color.setRgb(photo_color.red(), photo_color.green(), photo_color.blue());
+			result_Image.setPixelColor(clamp<double>(x + 20 * sin(2 * 3.14 * y / 60), photo.width() - 1, 0), y, photo_color);
+		}
+	return result_Image;
+}
+
+QImage WavesYFilter::calculateNewImagePixMap(const QImage & photo, int radius)
+{
+	QImage result_Image(photo.width(), photo.height(), photo.format());
+	for (int x = 0; x < photo.width(); x++)
+		for (int y = 0; y < photo.height(); y++)
+		{
+			QColor photo_color = photo.pixelColor(x, y);
+			photo_color.setRgb(photo_color.red(), photo_color.green(), photo_color.blue());
+			result_Image.setPixelColor(clamp<double>(x + 20 * sin(2 * 3.14 * x / 30), photo.width() - 1, 0), y, photo_color);
+		}
+	return result_Image;
+}
