@@ -152,3 +152,63 @@ public:
 			}
 	}
 };
+
+class Sharpness_filter1 : public Matrix_filter
+{
+public:
+	Sharpness_filter1() : Matrix_filter(1)
+	{
+		int size = 2 * mRadius + 1;
+		vector = new double[size * size];
+		vector[0] = -1;
+		vector[2] = -1;
+		vector[6] = -1;
+		vector[8] = -1;
+		vector[1] = -1;
+		vector[3] = -1;
+		vector[5] = -1;
+		vector[7] = -1;
+		vector[4] = 9;
+	}
+};
+
+class TransferFilter : public Filter
+{
+public:
+	int k;
+	TransferFilter() { k = 50; }
+	~TransferFilter() {};
+	QImage calculateNewImagePixMap(const QImage& photo, int radius);
+};
+
+class TurnFilter : public Filter
+{
+public:
+	double fi;
+	int x0;
+	int y0;
+	TurnFilter() 
+	{ 
+		fi = 50 * 3.14 / 180;
+		x0 = 280;
+		y0 = 350;
+	}
+	~TurnFilter() {};
+	QImage calculateNewImagePixMap(const QImage& photo, int radius);
+};
+
+class WavesXFilter : public Filter
+{
+public:
+	WavesXFilter() {}
+	~WavesXFilter() {};
+	QImage calculateNewImagePixMap(const QImage& photo, int radius);
+};
+
+class WavesYFilter : public Filter
+{
+public:
+	WavesYFilter() {}
+	~WavesYFilter() {};
+	QImage calculateNewImagePixMap(const QImage& photo, int radius);
+};

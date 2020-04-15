@@ -47,4 +47,19 @@ void main(int argc, char* argv[])
 	Motion_blur* motion_blur = new Motion_blur();
 	QImage motion_blurImage = motion_blur->calculateNewImagePixMap(photo, 8);
 	motion_blurImage.save("Motion_blur.PNG");
+	Sharpness_filter1* sharp1 = new Sharpness_filter1();
+	QImage sharpImage1 = sharp1->calculateNewImagePixMap(photo, 1);
+	sharpImage1.save("Sharp1.PNG");
+	TransferFilter* transfer = new TransferFilter();
+	QImage transferImage = transfer->calculateNewImagePixMap(photo, 0);
+	transferImage.save("Transfer.PNG");
+	TurnFilter* turn = new TurnFilter();
+	QImage turnImage = turn->calculateNewImagePixMap(photo, 0);
+	turnImage.save("Turn.PNG");
+	WavesXFilter* wavex = new WavesXFilter();
+	QImage wavexImage = wavex->calculateNewImagePixMap(photo, 0);
+	wavexImage.save("WaveX.PNG");
+	WavesYFilter* wavey = new WavesYFilter();
+	QImage waveyImage = wavey->calculateNewImagePixMap(photo, 0);
+	waveyImage.save("WaveY.PNG");
 }
